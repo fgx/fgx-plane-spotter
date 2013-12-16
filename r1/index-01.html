@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en>
 <head>
-<title>FGx Plane Spotter R1.1</title>
+<title>FGx Plane Spotter R1</title>
 <meta charset=utf-8>
 </head>
 <body>
@@ -98,7 +98,7 @@
 		FGx.info = info = document.body.appendChild( document.createElement( 'div' ) );
 		info.style.cssText = 'border: 0px solid red; position: absolute; top: 0px; width: 100% ';
 
-		info.innerHTML = info.txt = '<h1 title="FlightGear for amateurs" >FGx Plane Spotter R1.1 ~ ' +
+		info.innerHTML = info.txt = '<h1 title="FlightGear for amateurs" >FGx Plane Spotter R1 ~ ' +
 			'<a href=# title="Get help and info" onclick=help.style.display="block"; ><large>&#x24D8;</large></a></h1>' +
 			'<div style=height{900px; >Camera lat: <input type="text" id="inpLat" value="' + FGx.places[ FGx.startPlace][2] +'" size=8 /> ' +
 				'lng: <input type="text" id="inpLng" value="' + FGx.places[ FGx.startPlace][3] +'" size=8 /> ' +
@@ -272,6 +272,10 @@
 		var elevDeltaPixelsLng = Math.abs( elevDeltaLngs * 120 );
 // console.log( 'elevDeltaPixelsLat', elevDeltaPixelsLat, 'elevDeltaPixelsLng', elevDeltaPixelsLng );
 
+		geometry = new THREE.PlaneGeometry( 1000, 1000, pixelsLng - 1, pixelsLat - 1);
+		geometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
+// material = new THREE.MeshNormalMaterial({ side: THREE.DoubleSide });
+
 // to be simplified...
 		if ( FGx.mapType === 0 ) {
 			var mapTexture = THREE.ImageUtils.loadTexture( "http://mt1.google.com/vt/x=" + tileXLng + "&y="+ tileYLat + "&z=" + tileZoom );
@@ -285,7 +289,6 @@
 			var mapTexture = THREE.ImageUtils.loadTexture( FGx.mapTypes[ FGx.mapType ][1] + tileZoom + "/" + tileXLng + "/" + tileYLat + ".png" );
 		}
 
-//		material = new THREE.MeshNormalMaterial({ side: THREE.DoubleSide });	
 		material = new THREE.MeshPhongMaterial( {map: mapTexture, side: THREE.DoubleSide, color: 0xffffff, ambient: 0xffffff, specular: 0x888888, shininess: 200, shading: THREE.SmoothShading} );
 		// material.color.setHSL( 0.5, 0.8, 0.5 );
 
@@ -306,16 +309,13 @@
 		var zoomImgData = zoomCtx.getImageData( 1, 0, pixelsLng, pixelsLat);
 		var color, id, len = zoomImgData.data.length / 4;
 		var scale = 0.01 * FGx.exaggeration;
-		
-		geometry = new THREE.PlaneGeometry( 1000, 1000, pixelsLng - 1, pixelsLat - 1);
-		geometry.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
-	
+
 		for ( var i = 0; i < len; i++ ) {
 			color = zoomImgData.data[ 4 * i] + ' ' + zoomImgData.data[ 4 * i + 1] + ' '  + zoomImgData.data[ 4 * i + 2];
 			id =  FGx.uniColors.indexOf( color );
 			geometry.vertices[ i ].y = scale * FGx.uniElevations[ id ];
 		}
-		
+
 		FGx.terrain = mesh = new THREE.Mesh( geometry, material );
 		mesh.receiveShadow = true;
 		mesh.castShadow = true;
@@ -330,15 +330,6 @@
 			geometry.applyMatrix( new THREE.Matrix4().multiplyScalar( 3 ) );
 			FGx.seymour = geometry;
 		} );
-
-
-		loader.load( '../../fgx-aircraft/data/21/21.js', function( geometry ) { 
-			geometry.applyMatrix( new THREE.Matrix4().makeRotationY( -Math.PI / 2 ) );
-			material = new THREE.MeshNormalMaterial();
-			FGx.myPlane = new THREE.Mesh( geometry, material );
-			FGx.scene.add( FGx.myPlane );			
-		} );		
-		
 console.log( 'Load time:', new Date() - FGx.startTime );
 	}
 
@@ -353,12 +344,10 @@ console.log( 'Load time:', new Date() - FGx.startTime );
 			getCrossfeed();
 			FGx.delta = 0;
 		}
-		
-		var pos = FGx.camera.clone();
-		pos.translateOnAxis( v(-0.4, 0.2, -1), 20  );
-		if ( FGx.myPlane ) FGx.myPlane.position = pos.position;
 	}
 	
+
+
 	function requestFile( fname ) {
 		var xmlHttp = new XMLHttpRequest();
 		xmlHttp.open( 'GET', fname, false );
@@ -366,7 +355,6 @@ console.log( 'Load time:', new Date() - FGx.startTime );
 		return xmlHttp.responseText;
 	}
 
-	function v(x,y,z){ return new THREE.Vector3(x,y,z); } 	
 	function cos(a){ return Math.cos(a); }
 //	function sin(a){ return Math.sin(a); }
 	function pow(a,b){ return Math.pow(a,b); }
