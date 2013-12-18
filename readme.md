@@ -24,7 +24,7 @@ The wish list of possibilities has been started - and many more items will be ad
 
 There three significant hurdles to be overcome before any significant work is carried out on the wish list.
 
-1. Develop the database of online 3D terrain eleveation bitmaps. This work is decribed  
+1. Develop the database of online 3D terrain eleveation bitmaps. This work is decribed in detail here [Jaanga unFlatland Read Me]( http://jaanga.github.io/cookbook/un-flatland/index.html#tib)
 
 ### Overview
 The current 
