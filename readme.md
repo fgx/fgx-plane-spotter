@@ -5,6 +5,8 @@ FGx Plane Spotter Read Me
 
 For generic 3D map see also: [ Jaanga UnFlatland]( https://github.com/jaanga/cookbook/tree/gh-pages/un-flatland )
 
+For  [Leap Motion]( https://www.leapmotion.com/ ) device enabled and earlier versions see: [Flying Leap 3D]( https://github.com/jaanga/gestification/tree/gh-pages/projects/flying-leap-3d )
+
 ## Concept
 View live [FGx Crossfeed]( http://crossfeed.fgx.ch/data ) data - showing current FlightGear sessions - in the context of an interactive 3D map.
 
@@ -15,7 +17,16 @@ View live [FGx Crossfeed]( http://crossfeed.fgx.ch/data ) data - showing current
 
 ## Road Map
 
+### Specific Item Wish List
+See also Road Map for generic the underlying mapping app [unFlatLand]( https://github.com/jaanga/cookbook/tree/gh-pages/un-flatland/ )
+
+* Access to full list of 27K+ ICAO locations
+* ICAO Airports display runways and ILS geomettry
+* Mouseover ICOA location displays heads-up window with further details
+* Mouseover aircraft displays window with further details - see FGx Globe
+ 
 * Cameras can be located at ATC position of current airport
+* Cameras can be associacted with any aircraft
 
 ## Issues /Bugs
 
@@ -37,6 +48,11 @@ FGx home page: [fgx.ch]( http://www.fgx.ch )
 
 
 ## Change Log
+
+2013-12-17 ~ Theo
+
+* Update read me
+
 
 2013-12-16 ~ Theo
 
