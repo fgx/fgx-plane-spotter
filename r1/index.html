@@ -168,7 +168,11 @@
 		renderer.shadowMapEnabled = true;
 
 		renderer.setSize( window.innerWidth, window.innerHeight );
-
+		if ( ! Detector.webgl ) {
+			renderer = new THREE.CanvasRenderer();
+		} else {
+			renderer = new THREE.WebGLRenderer( { antialias: true } );
+		}
 		document.body.appendChild( renderer.domElement );
 		FGx.scene = scene = new THREE.Scene();
 
