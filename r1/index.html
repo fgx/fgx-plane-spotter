@@ -110,7 +110,8 @@
 				'<select title="Select the amount of vertical distortion" id=selExagg onchange="FGx.exaggeration = this.selectedIndex; initElevations( FGx.places[ selPlace.selectedIndex ][2], FGx.places[selPlace.selectedIndex][3] );"></select> ' +
 				'<select title="Select the 2D overlay" id=selMapType onchange="FGx.mapType=this.selectedIndex; initElevations( FGx.places[selPlace.selectedIndex ][2], FGx.places[selPlace.selectedIndex ][3] );"><select>' +
 				'<br><br>' +
-				'<a href="" >Trackball Controller</a> &#10070; <a href="JavaScript:getFirstPersonController();" title="Happy flying!" >First Person Controller</a>' +
+				'<a href="" >Trackball Controller</a> &#10070; ' +
+				'<a href="JavaScript:getFirstPersonController();" title="Happy flying!" >First Person Controller</a>' +
 				'  &#10070; <input id=chkPlacards type="checkbox" onchange=togglePlacards(); > Placards' +
 			'</div><br>' +
 			'<div id=touch style=display:none;height:' + window.innerHeight + 'px;width:100%; ></div>' +
@@ -226,11 +227,11 @@
 			FGx.placards.children.length = 0;
 		}	
 //console.log('chrome test',lat,lng );
+
 		FGx.startTime = new Date();
-		var  tileZoom = FGx.tileZoom, elevZoom = FGx.elevZoom;
-		//if ( !FGx.elevationsImage ) {
-			FGx.elevationsImage = document.createElement('img' )
-		//}
+		var tileZoom = FGx.tileZoom;
+		var elevZoom = FGx.elevZoom;
+
 		lat = parseFloat( lat );
 		lng = parseFloat ( lng );
 
@@ -239,7 +240,8 @@
 
 		FGx.elevTileYLat = lat2tile( lat, elevZoom );
 		FGx.elevTileXLng = long2tile( lng, elevZoom );
-
+		
+		FGx.elevationsImage = document.createElement('img' );
 		FGx.elevationsImage.onload = initCanvas;
 		FGx.elevationsImage.src = "../../fgx-globe/cookbook/unicam/topo-" + elevZoom + "-" + FGx.elevTileYLat + "-" + FGx.elevTileXLng + ".png";
 //console.log( lng, lat, FGx.tileXLng, FGx.tileYLat, FGx.elevTileXLng, FGx.elevTileYLat )
@@ -306,7 +308,7 @@
 		zoomCanvas.width = pixelsLng;
 		zoomCanvas.height = pixelsLat;
 
-		var zoomCtx = zoomCanvas.getContext("2d");
+zoomCtx = zoomCanvas.getContext("2d");
 		zoomCtx.putImageData( elevationsImgData, 0, 0 );
 		var zoomImgData = zoomCtx.getImageData( 1, 0, pixelsLng, pixelsLat);
 		var color, id, len = zoomImgData.data.length / 4;
