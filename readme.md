@@ -1,7 +1,7 @@
 ![FGx Logo]( http://fgx.github.io/images/fgx-cap-40x30.png)FGx Plane Spotter Read Me
 ====================================================================================
 
-Live demo: [FGx Plane Spotter]( http://fgx.github.io/fgx-plane-spotter/latest.html "Happy spotting!")
+Live demo: [FGx Plane Spotter]( http://fgx.github.io/fgx-plane-spotter/index.html "Happy spotting!")
 
 For the generic 3D map used as the basis here see also: [ Jaanga UnFlatland]( https://github.com/jaanga/cookbook/tree/gh-pages/un-flatland )
 
