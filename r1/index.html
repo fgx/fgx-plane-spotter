@@ -182,6 +182,8 @@
 		FGx.scene.add( camera );
 		FGx.controls = controls = new THREE.TrackballControls( camera, renderer.domElement );
 
+		THREE.ImageUtils.crossOrigin = 'anonymous';
+
 		FGx.stats = stats = new Stats();
 		stats.domElement.style.cssText = 'position: absolute; top: 0px; zIndex: 100; ';
 		document.body.appendChild( stats.domElement );
@@ -244,6 +246,7 @@
 		FGx.elevationsImage = document.createElement('img' );
 		FGx.elevationsImage.onload = initCanvas;
 		FGx.elevationsImage.src = "../../fgx-globe/cookbook/unicam/topo-" + elevZoom + "-" + FGx.elevTileYLat + "-" + FGx.elevTileXLng + ".png";
+		//FGx.elevationsImage.src = "../../fgx-terrain/" + elevZoom + "/" + FGx.elevTileYLat + "" + FGx.elevTileXLng + ".png";
 //console.log( lng, lat, FGx.tileXLng, FGx.tileYLat, FGx.elevTileXLng, FGx.elevTileYLat )
 	}
 
