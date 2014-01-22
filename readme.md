@@ -91,7 +91,7 @@ This app is at an early and volatile stage. Not all licensing requirements may h
 
 ## Change Log
 
-2013-12-20 ~ TTheo
+2013-12-20 ~ Theo
 
 * Aicraft no longer jiggles, visible with all cameras
 * Support for canvas renderer added
