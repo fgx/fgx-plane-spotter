@@ -516,6 +516,7 @@ console.log( 'Load time:', new Date() - FGx.startTime );
 		imageContext.font = '12px sans-serif';
 		imageContext.fillText( text, 5, 15 );
 		var texture = new THREE.Texture( image );
+		texture.minFilter = texture.magFilter = THREE.NearestFilter;
 		texture.needsUpdate = true;
 		return texture;
 	}
