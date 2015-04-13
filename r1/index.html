@@ -434,7 +434,7 @@ console.log( 'Load time:', new Date() - FGx.startTime );
 	}
 	
 	function getCrossfeed() {
-		FGx.crossfeed = JSON.parse( requestFile( 'http://crossfeed.fgx.ch/flights.json' ) ); 	
+		FGx.crossfeed = JSON.parse( requestFile( 'http://crossfeed.freeflightsim.org/flights.json' ) ); 	
 		if ( FGx.aircraft && FGx.aircraft.children.length > 0) { 
 			FGx.scene.remove( FGx.aircraft );
 			FGx.aircraft.children.length = 0;
